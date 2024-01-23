@@ -1,5 +1,5 @@
 import { CHAT_SETTING_LIMITS } from "@/lib/chat-setting-limits"
-import { checkApiKey, getServerProfile } from "@/lib/server-chat-helpers"
+import { checkApiKey, getServerProfile } from "@/lib/server/server-chat-helpers"
 import { ChatAPIPayload } from "@/types"
 import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   try {
     const profile = await getServerProfile()
 
-    checkApiKey(profile.azure_openai_api_key, "Azure")
+    checkApiKey(profile.azure_openai_api_key, "Azure OpenAI")
 
     const ENDPOINT = profile.azure_openai_endpoint
     const KEY = profile.azure_openai_api_key
